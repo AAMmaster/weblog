@@ -1,0 +1,55 @@
+{% load static %}
+<!-- Navbar STart -->
+    <header id="topnav" class="defaultscroll sticky">
+        <div class="container">
+            <!-- Logo container-->
+            <a class="logo" href="index-2.html">
+                <img src="{% static 'images/logo.png' %}" height="22" class="big-logo" alt="">
+                <img src="{% static 'images/logo-icon.png' %}" height="28" class="small-logo" alt="">
+            </a>
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+
+            <ul class="buy-button list-inline mb-0">
+                <li class="list-inline-item mb-0">
+                    <div class="search-bar">
+                        <div id="search" class="menu-search mb-0">
+                            <form role="search" method="get" id="searchform" class="searchform">
+                                <div>
+                                    <input type="text" class="border rounded" name="s" id="s" placeholder="جستوجو ...">
+                                    <input type="submit" id="searchsubmit" value="Search">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu nav-left">
+                    <li><a href="{% url 'home:home' %}" class="sub-menu-item">خانه</a></li>
+
+                    <li><a href="food-recipe.html" class="sub-menu-item">دستور پخت</a></li>
+
+                    <li><a href="{% url 'home:about' %}" class="sub-menu-item">درباره ما</a></li>
+                </ul>
+                <!--end navigation menu-->
+            </div>
+            <!--end navigation-->
+        </div>
+        <!--end container-->
+    </header>
+    <!--end header-->

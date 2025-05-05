@@ -1,0 +1,519 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	    <!-- Hero Start -->
+    <section class="bg-half-74 d-table w-100">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="tiny-six-item">
+                        {% for post in posts %}
+                        <div class="tiny-slide">
+                            <div
+                                class="card blog blog-type-two blog-primary position-relative border-0 rounded-0 overflow-hidden">
+                                <div class="blog-image position-relative overflow-hidden">
+                                    <img src="{{ post.images.first.file.url }}" class="" alt="" height="300px">
+                                    <div class="img-overlay"></div>
+                                </div>
+
+                                <div class="card-body content text-center">
+                                    <a href="#!" class="badge bg rounded-pill">{{ post.category.first }}</a>
+                                    <a href="{% url 'home:detail' post.slug %}" class="text-white d-block h5 mt-3 title">
+                                        {{ post.title }}
+                                    </a>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <span class="d-flex align-items-center">
+                                            <img src="{% static 'images/users/user-1.jpg' %}" class="avatar avatar-sm-sm rounded-pill"
+                                                alt="">
+                                            <a href="#!" class="text-white-50 ms-2">احمدی</a>
+                                        </span>
+
+                                        <span class="text-white-50 ms-4"><i class="uil uil-calendar-alt text-light"></i>
+                                            1401/08/07</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!--end slide-->
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- Hero End -->
+
+    <!-- Start -->
+    <section class="section">
+        <div class="container">
+            <div class="row g-2 g-md-3 row-cols-md-3 row-cols-lg-5 row-cols-2 justify-content-center">
+                <div class="col">
+                    <div class="position-relative rounded-md shadow-md overflow-hidden">
+                        <div class="bg-overlay opacity-9"></div>
+                        <div>
+                            <img src="images/food/f1.jpg" class="img-fluid" alt="">
+
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <a href="#!" class="text-white h5 mb-0">غذا</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col">
+                    <div class="position-relative rounded-md shadow-md overflow-hidden">
+                        <div class="bg-overlay opacity-9"></div>
+                        <div>
+                            <img src="images/food/f2.jpg" class="img-fluid" alt="">
+
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <a href="#!" class="text-white h5 mb-0">سالم</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col">
+                    <div class="position-relative rounded-md shadow-md overflow-hidden">
+                        <div class="bg-overlay opacity-9"></div>
+                        <div>
+                            <img src="images/food/f3.jpg" class="img-fluid" alt="">
+
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <a href="#!" class="text-white h5 mb-0">شام</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col">
+                    <div class="position-relative rounded-md shadow-md overflow-hidden">
+                        <div class="bg-overlay opacity-9"></div>
+                        <div>
+                            <img src="images/food/f4.jpg" class="img-fluid" alt="">
+
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <a href="#!" class="text-white h5 mb-0">تعطیلات</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col">
+                    <div class="position-relative rounded-md shadow-md overflow-hidden">
+                        <div class="bg-overlay opacity-9"></div>
+                        <div>
+                            <img src="images/food/f5.jpg" class="img-fluid" alt="">
+
+                            <div class="position-absolute top-50 start-50 translate-middle">
+                                <a href="#!" class="text-white h5 mb-0">قهوه</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title mb-4 pb-2 text-center">
+                        <h4 class="title mb-3">پست های اخیر</h4>
+                        <p class="text-muted para-desc mx-auto mb-0">وبلاگ خود را با گت بلاگ بنویسید که می تواند همه چیز
+                            را برای وبلاگ ، اخبار ، مقاله و غیره فراهم کند.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div id="grid" class="row">
+                {% for post in posts %}
+                    <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="{{ post.images.first.file.url }}" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">سالاد</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="{% url 'home:detail' post.slug %}" class="text-dark h5 title d-block mb-0">{{ post.title }}</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">{{ post.created_at|timesince }}</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+                <!--end col-->
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row">
+                <div class="col-12 mt-4 pt-2">
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true"><i class="mdi mdi-chevron-right mdi-18px"></i></span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true"><i class="mdi mdi-chevron-left mdi-18px"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title mb-4 pb-2 text-center">
+                        <h4 class="title mb-3">پست های محبوب</h4>
+                        <p class="text-muted para-desc mx-auto mb-0">وبلاگ خود را با گت بلاگ بنویسید که می تواند همه چیز
+                            را برای وبلاگ ، اخبار ، مقاله و غیره فراهم کند.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div class="row g-3 align-items-center mt-4">
+                <div class="col-lg-6">
+                    <div
+                        class="card blog blog-type-two blog-primary position-relative border-0 rounded-md overflow-hidden">
+                        <div class="blog-image position-relative overflow-hidden">
+                            <img src="images/food/8.jpg" class="img-fluid" alt="">
+                            <div class="bg-overlay opacity-8"></div>
+                        </div>
+
+                        <div class="content-middle text-center">
+                            <a href="#!" class="badge bg rounded-pill">نان</a>
+                            <a href="food-recipe.html" class="text-white d-block h5 mt-3 title">دستور العمل سالاد توت
+                                فرنگی ، کیوی و اسفناج</a>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="d-flex align-items-center">
+                                    <img src="images/users/user-1.jpg" class="avatar avatar-sm-sm rounded-pill" alt="">
+                                    <a href="#!" class="text-white-50 me-2">احمدی</a>
+                                </span>
+
+                                <span class="text-white-50 ms-4"><i class="uil uil-calendar-alt text-light"></i>
+                                    1401/08/07</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <img src="images/food/1.jpg" class="img-fluid rounded" alt="">
+                                </div>
+
+                                <div class="col-md-7 mt-4 mt-sm-0">
+                                    <div class="border-0 bg-white blog blog-primary overflow-hidden">
+                                        <span class="badge bg rounded-pill">غذا</span>
+
+                                        <a href="food-recipe.html" class="text-dark h5 title d-block my-3">استراتژی خود
+                                            را تغییر دهید: یک مشاور تجاری پیدا کنید</a>
+
+                                        <span class="text-muted d-block">1401/08/07</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <img src="images/food/5.jpg" class="img-fluid rounded" alt="">
+                                </div>
+
+                                <div class="col-md-7 mt-4 mt-sm-0">
+                                    <div class="border-0 bg-white blog blog-primary overflow-hidden">
+                                        <span class="badge bg rounded-pill">غذا</span>
+
+                                        <a href="food-recipe.html" class="text-dark h5 title d-block my-3">سالاد مرغ
+                                            پارمسان خامه ای خامه ای</a>
+
+                                        <span class="text-muted d-block">1401/08/07</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="row align-items-center">
+                                <div class="col-md-5">
+                                    <img src="images/food/4.jpg" class="img-fluid rounded" alt="">
+                                </div>
+
+                                <div class="col-md-7 mt-4 mt-sm-0">
+                                    <div class="border-0 bg-white blog blog-primary overflow-hidden">
+                                        <span class="badge bg rounded-pill">غذا</span>
+
+                                        <a href="food-recipe.html" class="text-dark h5 title d-block my-3">استیک دنده
+                                            چشم خیابان بوربون با پنیر</a>
+
+                                        <span class="text-muted d-block">1401/08/07</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- End -->
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h3>اشتراک هفتگی ما را مشترک کنید</h3>
+                        <p class="text-muted para-desc mx-auto mb-0">برای توضیح مزایای اشتراک در خدمات خود ، مقداری متن
+                            اضافه کنید.ما فقط یک بار در هفته بهترین وبلاگ خود را برای شما ارسال خواهیم کرد.</p>
+
+                        <div class="subcribe-form mt-5">
+                            <form class="m-0 mx-auto" style="max-width: 550px;">
+                                <input type="email" id="email" name="email" class="rounded-lg"
+                                    placeholder="ایمیل خود را وارد کنید">
+                                <button type="submit" class="btn btn-pills btn-primary">اشتراک</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+
+    <!-- Insta Post start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="tiny-twelve-item">
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/01.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/01.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/02.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/02.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/03.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/03.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/04.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/04.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/05.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/05.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/06.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/06.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/07.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/07.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/08.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/08.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/09.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/09.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/10.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/10.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/11.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/11.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/12.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/12.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="position-absolute top-50 start-50 translate-middle d-md-block d-none">
+                    <a href="#!" class="btn btn-primary btn-sm text-uppercase">ما را دنبال کنید</a>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+    <!-- Insta post end -->
+
+{% endblock %}

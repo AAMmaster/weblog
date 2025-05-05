@@ -1,0 +1,708 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+     <!-- Hero Start -->
+    <section class="bg-half-260 d-table w-100" style="background: url({% static 'images/food/recipe.jpg' %}) top;">
+        <div class="bg-overlay"></div>
+    </section>
+    <!--end section-->
+    <!-- Hero End -->
+
+    <!-- START -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="features-absolute">
+                        <div class="card blog blog-primary bg-white rouded shadow text-center">
+                            <div class="card-body py-5">
+                                <span class="badge bg-soft rounded-pill">غذا و دستور پخت</span>
+
+                                <div class="content mt-3">
+                                    <h3 class="">دستور العمل های خامه ای سیر سالاد مرغ پارمسان</h3>
+                                </div>
+
+                                <ul class="list-unstyled d-flex align-items-center justify-content-center mb-0 mt-3">
+                                    <li class="d-flex align-items-center">
+                                        <a href="#!" class="text-muted author"><i class="uil uil-user text-dark"></i>
+                                            {{ post.auther.first_name }} {{ post.auther.last_name }}</a>
+                                    </li>
+
+                                    <li>
+                                        <span class="text-muted me-4"><i class="uil uil-calendar-alt text-dark"></i>
+                                            {{ post.created_at|timesince }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <div class="blog blog-primary">
+                        {% for cat in post.category.all %}
+                            <span class="badge bg">{{ cat.title }}</span>
+
+                        {% endfor %}
+
+                        <p class="text-muted mt-4">{{ post.body }}</p>
+
+                        <div class="row">
+                            <div class="col-md-6 mt-4">
+                                <img src="images/food/f1.jpg" class="img-fluid rounded shadow" alt="">
+                            </div>
+
+                            <div class="col-md-6 mt-4">
+                                <img src="images/food/f4.jpg" class="img-fluid rounded shadow" alt="">
+                            </div>
+                        </div>
+
+                        <div class="mt-5">
+                            <h5 class="card-title mb-0">نظرات :</h5>
+
+                            <ul class="media-list list-unstyled mt-4 mb-0">
+                                {% for comment in comments %}
+                                     <li class="mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <a class="ps-3" href="#">
+                                                <img src="{{ comment.user.avatar.url }}"
+                                                    class="img-fluid avatar avatar-md-sm rounded-circle shadow"
+                                                    alt="img">
+                                            </a>
+                                            <div class="commentor-detail">
+                                                <h6 class="mb-0"><a href="javascript:void(0)"
+                                                        class="text-dark media-heading">{{ comment.user.first_name }} {{ comment.user.last_name }}</a></h6>
+                                                <small class="text-muted">{{ comment.created_at|timesince }}</small>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="text-muted"><i class="mdi mdi-reply"></i> پاسخ</a>
+                                    </div>
+                                    <div class="mt-3">
+                                        <p class="text-muted fst-italic p-3 bg-light rounded">{{ comment.body }}</p>
+                                    </div>
+
+{#                                     replies#}
+                                         {% for reply in comment.replies.all %}
+                                             <ul class="list-unstyled ps-4 ps-md-5 sub-comment">
+                                                <li class="mt-4">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="ps-3" href="#">
+                                                                <img src="{{ reply.user.avatar.url }}"
+                                                                    class="img-fluid avatar avatar-md-sm rounded-circle shadow"
+                                                                    alt="img">
+                                                            </a>
+                                                            <div class="commentor-detail">
+                                                                <h6 class="mb-0"><a href="javascript:void(0)"
+                                                                        class="text-dark media-heading">{{ reply.user.first_name }} {{ reply.user.last_name }}</a></h6>
+                                                                <small class="text-muted">{{ reply.created_at|timesince }}</small>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="text-muted"><i class="mdi mdi-reply"></i> پاسخ</a>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <p class="text-muted fst-italic p-3 bg-light rounded"> {{ reply.body }}</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                         {% endfor %}
+
+{#                                     replies#}
+                                </li>
+                                {% empty %}
+                                    شما اولین نفری باشید که نظر خود را ثبت میکنید
+                                {% endfor %}
+
+
+                            </ul>
+                        </div>
+
+                        <div class="mt-5">
+                            <h5 class="card-title mb-0">نظر خود را بنویسید :</h5>
+
+                            <form class="mt-4" novalidate method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            {{ form.errors }}
+                                            <label class="form-label">نظر شما</label>
+                                            {{ form.body }}
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            {{ form.user_name.error }}
+                                            <label class="form-label">نام <span class="text-danger">*</span></label>
+                                            {{ form.user_name }}
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">ایمیل شما <span
+                                                    class="text-danger">*</span></label>
+                                            {{ form.user_email }}
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+
+                                    <div class="col-md-12">
+                                        <div class="send d-grid">
+                                            <button type="submit" class="btn btn-primary">ارسال نظر</button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                            <!--end form-->
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-4 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="card bg-white p-4 rounded shadow sticky-bar">
+                        <!-- SEARCH -->
+                        <div class="widget">
+                            <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded text-center">جستوجو</h6>
+                            <div id="search2" class="widget-search mt-4 mb-0">
+                                <form role="search" method="get" id="searchform2" class="searchform">
+                                    <div>
+                                        <input type="text" class="border rounded" name="s" id="s2"
+                                            placeholder="کلیدواژه ...">
+                                        <input type="submit" id="searchsubmit2" value="Search">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- SEARCH -->
+
+                        <!-- RECENT POST -->
+                        <div class="widget mt-4 pt-2">
+                            <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded text-center">پست اخیر
+                            </h6>
+                            <div class="mt-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="images/food/5.jpg" class="avatar avatar-small rounded"
+                                        style="width: auto;" alt="">
+                                    <div class="flex-1 me-3">
+                                        <a href="agency-blog-detail.html"
+                                            class="d-block widget-post-title text-dark">مشاوره کسب و کار</a>
+                                        <span class="text-muted">1401/05/09</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center mt-3">
+                                    <img src="images/food/6.jpg" class="avatar avatar-small rounded"
+                                        style="width: auto;" alt="">
+                                    <div class="flex-1 me-3">
+                                        <a href="agency-blog-detail.html"
+                                            class="d-block widget-post-title text-dark">کسب و کار خود را گسترش دهید</a>
+                                        <span class="text-muted">1401/05/09</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center mt-3">
+                                    <img src="images/food/7.jpg" class="avatar avatar-small rounded"
+                                        style="width: auto;" alt="">
+                                    <div class="flex-1 me-3">
+                                        <a href="agency-blog-detail.html" class="d-block widget-post-title text-dark">به
+                                            تعادل باشکوه نگاه کنید</a>
+                                        <span class="text-muted">1401/09/07</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- RECENT POST -->
+
+                        <!-- TAG CLOUDS -->
+                        <div class="widget mt-4 pt-2 text-center">
+                            <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded">تگ ها</h6>
+                            <div class="tagcloud mt-4">
+                                <a href="javascript:void(0)" class="rounded text-dark">غذا</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">مرغ</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">دستور پخت</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">لذت</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">شنبه</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">پیشنهاد</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">تعطیلات</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">کیک</a>
+                                <a href="javascript:void(0)" class="rounded text-dark">استخوان</a>
+                            </div>
+                        </div>
+                        <!-- TAG CLOUDS -->
+
+                        <!-- Social -->
+                        <div class="widget mt-4 pt-2 text-center">
+                            <h6 class="widget-title font-weight-bold pt-2 pb-2 bg-light rounded">شبکه های اجتماعی</h6>
+
+                            <ul class="list-unstyled social-icon tagline-social mb-0 mt-4">
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-github"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-linkedin"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                            class="mdi mdi-whatsapp"></i></a></li>
+                            </ul>
+                            <!--end icon-->
+                        </div>
+                        <!-- Social -->
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h4 class="title mb-3">دستور العمل های مرتبط</h4>
+                        <p class="text-muted para-desc mb-0">وبلاگ خود را با GetBlog بنویسید که می تواند همه چیز را برای
+                            وبلاگ ، اخبار ، مقاله و غیره فراهم کند.</p>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+
+            <div id="grid" class="row">
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/1.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">سالاد</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">پیشرانه نرم چند لایه
+                                غول پیکر</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/08/09</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/5.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">صبحانه</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">صبحانه عاشقانه برای
+                                دو</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/09/07</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/2.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">نان</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">سوپ کدو تنبل
+                                Macchiato</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/08/09</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/6.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">آشپز</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">شکم گوشت خوک بافته
+                                Adobo توسط سرآشپز لی کوهن</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/09/07</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/8.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">نان</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">نان های دارچین برای
+                                دو</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/07/09</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/7.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">اجاق گاز</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">کاری نارگیل اجاق گاز
+                                آهسته</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/09/07</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/4.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">تولد</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">ایده آل برای یک جشن
+                                تولد</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/09/07</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 picture-item">
+                    <div class="card border-0 blog blog-type-two blog-primary">
+                        <div class="blog-image position-relative overflow-hidden rounded shadow-md">
+                            <img src="images/food/3.jpg" class="img-fluid" alt="">
+                            <div class="position-absolute top-0 start-0 pt-3 ps-3">
+                                <a href="#!" class="badge bg rounded-pill">خوردن</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-3">
+                            <a href="food-blog-detail.html" class="text-dark h5 title d-block mb-0">5 دستور العمل
+                                تقریباً خیلی زیبا برای خوردن</a>
+
+                            <ul class="list-unstyled d-flex align-items-center justify-content-between mb-0 mt-2">
+                                <li>
+                                    <span class="text-muted d-block">1401/07/09</span>
+                                </li>
+
+                                <li class="">
+                                    <a href="#!" class="text-muted likes"><i class="mdi mdi-heart"></i></a> <span
+                                        class="text-muted">22</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+    <!--end section-->
+    <!-- End -->
+
+    <!-- Insta Post start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="tiny-twelve-item">
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/01.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/01.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/02.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/02.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/03.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/03.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/04.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/04.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/05.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/05.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/06.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/06.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/07.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/07.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/08.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/08.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/09.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/09.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/10.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/10.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/11.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/11.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tiny-slide">
+                        <div class="card insta-post insta-primary client-testi rounded-0 overflow-hidden">
+                            <div class="card-img position-relative">
+                                <img src="images/food/insta/12.jpg" class="img-fluid" alt="">
+                                <div class="card-overlay"></div>
+
+                                <div class="pop-icon">
+                                    <a href="images/food/insta/12.jpg" class="btn btn-pills btn-icon lightbox"><i
+                                            class="uil uil-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="position-absolute top-50 start-50 translate-middle d-md-block d-none">
+                    <a href="#!" class="btn btn-primary btn-sm text-uppercase">مارا دنبال کنید</a>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+
+{% endblock %}
