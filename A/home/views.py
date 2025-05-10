@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views import View
-from . models import Post, Comment
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.views import View
+
 from accounts.models import User
 from .forms import CommentForm
-from django.contrib import messages
+from .models import Post, Comment
 
 
 class HomeView(View):
@@ -17,7 +18,7 @@ class DetailView(View):
 
     def get(self, request, post_slug):
         form = CommentForm()
-        post = Post.objects.get(slug=post_slug)
+        post = get_object_or_404(Post, slug=post_slug)
         comments = Comment.objects.filter(post=post, is_reply=False).order_by('created_at')
         return render(request, 'home/detail.html', {'post': post, 'comments': comments, 'form': form})
 
@@ -28,9 +29,16 @@ class DetailView(View):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+
+            # اگر فیلد مخفی reply_comment پر شده، این یک ریپلایه
+            if comment.reply_comment:
+                comment.is_reply = True
+            else:
+                comment.is_reply = False
+
             comment.save()
             messages.success(request, 'Your comment has been added.', 'success')
-            return redirect('home:detail' , post_slug=post.slug)
+            return redirect('home:detail', post_slug=post.slug)
 
         return render(request, 'home/detail.html', {'post': post, 'comments': comments, 'form': form})
 

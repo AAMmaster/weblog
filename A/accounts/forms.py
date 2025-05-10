@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from . models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate
 
 
 
@@ -53,3 +53,22 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={
+        'class':'form-control', 'placeholder':'نام کاربری'
+    }))
+    password = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(attrs={
+        'class':'form-control', 'placeholder':'رمز عبور'
+    }))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        u = cleaned_data.get('username')
+        p = cleaned_data.get('password')
+        if u and p:
+            user = authenticate(username=u, password=p)
+            if not user:
+                raise forms.ValidationError('نام کاربری یا رمز عبور اشتباه است.')
+            cleaned_data['user'] = user
+        return cleaned_data

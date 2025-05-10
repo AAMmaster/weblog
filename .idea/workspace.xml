@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772f2c64-6817-4f03-8073-a3696a13f5d9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/A/accounts/templates/accounts/Login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/accounts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/accounts/templates/accounts/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/accounts/templates/accounts/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/A/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/templates/home/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/templates/home/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/A/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A/templates/inc/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/A/templates/inc/footer.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,21 +35,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "AAMmaster"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AAMmaster&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AAMmaster/weblog.git",
-    "accountId": "d92c6b78-f28f-404a-ad68-46a507038b68"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AAMmaster/weblog.git&quot;,
+    &quot;accountId&quot;: &quot;d92c6b78-f28f-404a-ad68-46a507038b68&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2wrjQT6sV7otaDckdNWHq0JAXTj" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -49,6 +62,7 @@
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.landing.html.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -63,7 +77,10 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django Server.weblog">
+    <configuration name="landing.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/weblog/home/templates/home/landing.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="weblog" type="Python.DjangoServer" factoryName="Django server">
       <module name="weblog" />
       <option name="ENV_FILES" value="" />
@@ -88,6 +105,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.landing.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -106,6 +128,7 @@
       <option name="presentableId" value="Default" />
       <updated>1746806578485</updated>
       <workItem from="1746806582035" duration="3218000" />
+      <workItem from="1746877264654" duration="5377000" />
     </task>
     <servers />
   </component>
