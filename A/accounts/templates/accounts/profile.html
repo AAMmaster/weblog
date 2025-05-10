@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h2>پروفایل من</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>نام کاربری:</strong> {{ user.username }}</li>
+            <li class="list-group-item"><strong>نام و نام خانوادگی:</strong> {{ user.first_name }} {{ user.last_name }}
+            </li>
+            <li class="list-group-item"><strong>ایمیل:</strong> {{ user.email }}</li>
+            {% if user.avatar %}
+                <li class="list-group-item">
+                    <img src="{{ user.avatar.url }}" alt="Avatar" class="img-thumbnail" style="max-width:150px;">
+                </li>
+                <button style="height: 50px;width: 60px"><a href="{% url 'accounts:logout' %}" style="height: 50px;width:60px">log out</a></button>
+            {% endif %}
+            <!-- هر فیلد دیگه‌ای که مدل User داره -->
+
+
+
+        </ul>
+    </div>
+{% endblock %}

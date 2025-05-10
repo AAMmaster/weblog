@@ -52,7 +52,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'avatar')
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='نام کاربری', widget=forms.TextInput(attrs={

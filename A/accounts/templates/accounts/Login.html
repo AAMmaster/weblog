@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5">
-  <h2>ورود</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div class="mb-3">{{ form.username.label_tag }}{{ form.username }}</div>
-    <div class="mb-3">{{ form.password.label_tag }}{{ form.password }}</div>
-    <button type="submit" class="btn btn-primary">ورود</button>
-  </form>
-</div>
+    <div class="container mt-5">
+        <h2>ورود</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="mb-3">{{ form.username.label_tag }}{{ form.username }}</div>
+            <div class="mb-3">{{ form.password.label_tag }}{{ form.password }}</div>
+            <button type="submit" class="btn btn-primary">ورود</button>
+            <a class="btn btn-blue" href="{% url 'accounts:signup' %}">sign up</a>
+        </form>
+
+    </div>
 {% endblock %}
